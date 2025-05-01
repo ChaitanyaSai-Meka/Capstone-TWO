@@ -1,8 +1,20 @@
 @import "tailwindcss";
 
-body{
-    background-color: black;
+/*Custom Colors*/
+@theme{
+  --color-Paynes-Grey:#536878;
+  --color-Pearl:#EAE0C8;
 }
+/*Landng-Page-casual*/
+
+.textsize{
+  font-size: 40px;
+  /* font-family: 'Playfair Display', serif; */
+  /* font-weight: 600; */
+  letter-spacing: 0.5px;
+}
+
+/*Landing_page_premium*/
 .xeon-logo{
     font-size: 20px;
 }

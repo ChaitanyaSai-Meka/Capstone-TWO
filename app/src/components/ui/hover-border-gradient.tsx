@@ -70,7 +70,7 @@ export function HoverBorderGradient({
     >
       <div
         className={cn(
-          "w-auto text-white z-10 bg-black px-5 py-1 rounded-[inherit]",
+          "w-auto text-white z-10 bg-black px-8 py-2 rounded-[inherit]",
           className
         )}
       >
