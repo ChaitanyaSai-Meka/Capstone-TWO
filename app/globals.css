@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+.b{
+  background-color: whitesmoke;
+}
 /*Custom Colors*/
 @theme{
   --color-Paynes-Grey:#536878;
@@ -12,6 +15,63 @@
   /* font-family: 'Playfair Display', serif; */
   /* font-weight: 600; */
   letter-spacing: 0.5px;
+}
+
+.why_us{
+  letter-spacing: 0.5px;
+  font-weight: bold;
+}
+
+.partners{
+  letter-spacing: 0.5px;
+  font-weight: bold;
+}
+
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(1px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.3);
+}
+
+.animate-infinite-scroll {
+  display: flex;
+  animation: infinite-scroll 30s linear infinite;
+}
+
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+.animate-infinite-scroll-logos {
+  display: flex;
+  width: max-content;
+  animation: infinite-scroll 30s linear infinite;
+}
+
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /*Landing_page_premium*/
@@ -40,3 +100,5 @@
     -webkit-background-clip: text;
     animation: shimmer 8s linear infinite;
   }
+
+  /* globals.css */

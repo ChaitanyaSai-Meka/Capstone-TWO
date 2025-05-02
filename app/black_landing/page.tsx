@@ -5,7 +5,7 @@ import { HoverBorderGradient } from '../src/components/ui/hover-border-gradient'
 
 export default function Black_LandingPage() {
   return (
-    <div>
+    <div className='bg-black'>
       {/* Navbar */}
       <div className="flex justify-between mb-2 mt-2">
         <div className="text-white ml-15 xeon-logo">
@@ -46,6 +46,13 @@ export default function Black_LandingPage() {
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
+      </div>
+      <div>
+        <h1 className="text-6xl flex justify-center partners mt-8">
+          <span className='bg-gradient-to-b from-neutral-200 to-neutral-500 text-transparent bg-clip-text'>Our</span>
+          <span className="ml-4 mr-4 shimmer-gold ">Elite</span>
+          <span className='bg-gradient-to-b from-neutral-200 to-neutral-500 text-transparent bg-clip-text'>Partners</span>
+        </h1>
       </div>
     </div>
   );
