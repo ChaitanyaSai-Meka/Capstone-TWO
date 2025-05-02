@@ -44,6 +44,43 @@ export default function LandingPage() {
                 {/*Map-Section-Ends*/}
             </div>
             {/*Main-Section-Ends*/}
+            {/*Why Us?*/}
+                <div>
+                    {/*heading*/}
+                    <h1>
+                        Why Us?
+                    </h1>
+                    {/*Heading Ends*/}
+                    {/**/}
+                    <>
+                    </>
+                    {/**/}
+                </div>
+            {/*Why Us? Ends*/}
+            {/*Our Parteners*/}
+                <div>
+                    <h1>Our Elite Partners</h1>
+                </div>
+            {/*Our Parteners Ends*/}
+            {/*Testimonials*/}
+                <div>
+                    <h1>What do people says about us?</h1>
+                </div>
+            {/*Testimonials-Ends*/}
+            {/*Questions Section*/}
+                <div>
+                    <h1>
+                        <span>
+                            You`re Questions
+                        </span>
+                        <span>
+                            We Answer.
+                        </span>
+                    </h1>
+                </div>
+            {/*Questions Section-Ends*/}
+            {/*Footer Section*/}
+            {/*Footer Section Ends*/}
         </div>
         //main-div-ends
     )
