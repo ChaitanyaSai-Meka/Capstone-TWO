@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-.b{
+html,body{
   background-color: whitesmoke;
 }
 /*Custom Colors*/
@@ -79,7 +79,7 @@
   }
 }
 
-/*Landing_page_premium*/
+/*Luxe_landing*/
 .xeon-logo{
     font-size: 20px;
 }
@@ -105,5 +105,27 @@
     -webkit-background-clip: text;
     animation: shimmer 8s linear infinite;
   }
+/*Luxe_landing - ends*/
+
+/*Home_navbar*/
+.sizing{
+  font-size: 16px;
+}
+
+.size-join{
+  font-size: 15px;
+}
+
+.button-style{
+  border-radius: 20px;
+  border: grey 0.5px solid;
+}
+
+.button-style:hover{
+  box-shadow: -4px 12px 10px -7px rgba(0, 0, 0, 0.3);
+}
+
+/*Home_navbar - ends*/
+  
 
   /* globals.css */

@@ -1,6 +1,7 @@
 'use client'; 
 import { useEffect, useState } from 'react';
 import '../globals.css';
+import Link from 'next/link';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -21,7 +22,9 @@ const Navbar = () => {
             }`}
         >
             <h1 className="text-3xl text-Paynes-Grey ml-4 sm:ml-20">
-                XEON
+                <Link href='/'>
+                    XEON
+                </Link>
             </h1>
             <button className="px-8 py-2 rounded-full bg-gradient-to-b from-[#536878] to-[#3f535c] text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200 mr-4 sm:mr-20">
                 Join the Elite

@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-import "../globals.css";
-import { HoverBorderGradient } from '../src/components/ui/hover-border-gradient';
+import "../../globals.css";
+import { HoverBorderGradient } from '../../src/components/ui/hover-border-gradient';
 
 export default function Black_LandingPage() {
   return (

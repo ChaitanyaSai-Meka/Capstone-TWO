@@ -1,12 +1,14 @@
 "use client";
 import React from "react";
 import '../globals.css';
-import Image from 'next/image';
+import Navbar from "./navbar";
 
 const page = () => {
   return (
-    <div className="b">
-        
+    <div className="h-full w-full">
+        <div>
+            <Navbar/> 
+        </div>   
     </div>
   )
 }
