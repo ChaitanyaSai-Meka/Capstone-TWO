@@ -4,20 +4,24 @@ import '../globals.css';
 import Image from 'next/image';
 import testimonials from "../src/data/testimonialsData";
 import { WobbleCard } from "../src/components/ui/wobble-card";
+import Footer from './footer';
+import Navbar from "./navbar";
 
 export default function LandingPage() {
+
     return (
         //main-div
         <div className="b h-full w-full">
             {/*Nav-Bar Div*/}
-            <div className="flex justify-between">
+            {/* <div className="flex justify-between">
                 <h1 className="mt-5 ml-20 text-3xl text-Paynes-Grey">
                     XEON
                 </h1>
                 <button className="px-8 py-2 rounded-full bg-gradient-to-b from-[#536878] to-[#3f535c] text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200 mt-5 mr-20">
                     Join the Elite
                 </button>
-            </div>
+            </div> */}
+            <Navbar/>
             {/*Nav-Bar Div Ends*/}
             {/*Main-Section*/}
             <div className="flex flex-col md:flex-row items-center justify-between px-10 py-20 mb-5">
@@ -187,7 +191,7 @@ export default function LandingPage() {
                 {/* FAQ List */}
                 <div className="w-full max-w-xl space-y-4">
                     <div className="border-b border-gray-300 pb-2">
-                        <h2 className="text-xl font-semibold flex justify-center">Top questions</h2>
+                        <h2 className="text-2xl font-semibold flex justify-center">Top questions</h2>
                         <p className="text-lg font-medium mt-3">Is my hotel a fit for XEON?</p>
                         <p className="font-medium mt-3 opacity-25 mb-2">XEON curates an elite portfolio: from urbane boutique retreats to stately villas and heritage estates. If your property epitomizes unparalleled comfort and distinction, it belongs here.</p>
                         <p className="text-lg font-medium mt-3">Must I commit to perennial hosting?</p>
@@ -196,7 +200,7 @@ export default function LandingPage() {
                         <p className="font-medium mt-3 opacity-25 mb-2">Listing is complimentary. Upon booking, XEON retains a modest 3 % commission on the reservation subtotal—no hidden charges. We seamlessly manage payment processing and, where applicable, oversee tax remittance.</p>
                     </div>
                     <div className="border-b border-gray-300 pb-2">
-                        <h2 className="text-xl font-semibold flex justify-center mt-3">Policy & regulations</h2>
+                        <h2 className="text-2xl font-semibold flex justify-center mt-5 mb-3">Policy & regulations</h2>
                         <p className="text-lg font-medium mt-3">Must I navigate local ordinances?</p>
                         <p className="font-medium mt-3 opacity-25 mb-2">Local jurisdictions often impose bespoke zoning statutes, licensing mandates, or association covenants. We advise a swift review of municipal codes—and, where prudent, consulting local counsel—to ensure flawless compliance.</p>
                         <p className="text-lg font-medium mt-3">What if I require further counsel?</p>
@@ -219,6 +223,8 @@ export default function LandingPage() {
             {/*Questions Section-Ends*/}
 
             {/*Footer Section*/}
+            <div className="border-b-1 border-gray-300 pb-2"></div>
+                <Footer/>
             {/*Footer Section Ends*/}
         </div>
         //main-div-ends
