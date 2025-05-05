@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import '../globals.css';
+import '../../globals.css';
 import Image from 'next/image';
-import testimonials from "../src/data/testimonialsData";
-import { WobbleCard } from "../src/components/ui/wobble-card";
+import testimonials from "../../src/data/testimonialsData";
+import { WobbleCard } from "../../src/components/ui/wobble-card";
 import Footer from './footer';
 import Navbar from "./navbar";
 

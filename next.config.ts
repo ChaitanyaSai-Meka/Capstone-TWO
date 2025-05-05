@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   redirects: async () => [
     {
       source: '/', // Root path
-      destination: '/home', // Redirect to the /home page
+      destination: '/Xeon/home', // Redirect to the /home page
       permanent: true, // Permanent redirect (301)
     },
   ],
