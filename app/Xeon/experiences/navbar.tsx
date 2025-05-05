@@ -3,6 +3,7 @@ import { useEffect, useState } from'react';
 import React from 'react'
 import { User, Menu } from 'lucide-react';
 import Link from 'next/link';
+import '../../globals.css'
 
 const Navbar = () => {
 
@@ -25,27 +26,27 @@ const Navbar = () => {
             X
           </h1>
         </div>
-        <div className='flex gap-4 mt-7 sizing ml-135 mr-85'>
-          <button className='font-medium px-4 py-2 hover:px-4 hover:py-2 hover:rounded-3xl '>
-            <Link href='/Xeon/home'>
-              Home
+        <div className='flex gap-4 mt-7 sizing ml-135 mr-[339px]'>
+          <button className='font-regular px-4 py-2 hover:bg-gray-200 hover:px-4 hover:py-2  hover:rounded-3xl opacity-50 hover:opacity-70'>
+            <Link href="/Xeon/home">
+                Home
             </Link>
           </button>
-          <button className='font-regular px-4 py-2 hover:bg-gray-200 hover:px-4 hover:py-2 hover:rounded-3xl opacity-50 hover:opacity-70'>
+          <button className='font-medium px-4 py-2  hover:px-4 hover:py-2 hover:rounded-3xl '>
             <Link href='/Xeon/experiences'>
-              Experiences
+                Experiences
             </Link>
           </button>
         </div>
         <div className='flex gap-4'>
           <h1 className='mt-5 size-join font-medium'>
-            <button className="px-4 py-2 hover:bg-gray-200 hover:px-4 hover:py-2 hover:rounded-3xl">
+            <button className="px-4 py-2 hover:bg-gray-200 hover:px-4 hover:py-2  hover:rounded-3xl">
               <Link href="/Xeon/landing">
                 Join the Elite
               </Link>
             </button>
           </h1>
-          <button className='button-style mt-4 px-4 py-0 button'>
+          <button className='button-style mt-4 px-4 py-1 button'>
             <div className='flex gap-4'>
               <Menu style={{ objectFit: "contain", height: 18 }} className='mt-2' />
               <User style={{ objectFit: "contain", height: 32 }} />
@@ -70,16 +71,7 @@ const Navbar = () => {
       <input
         className="w-full px-1 py-1 text-sm placeholder-gray-500 focus:outline-none"
         type="text"
-        placeholder="Check in"
-      />
-      <div className="text-xs text-gray-500 ml-1">Add dates</div>
-    </div>
-    <div className="border-l border-gray-300 h-8"></div>
-    <div className="flex-1">
-      <input
-        className="w-full px-1 py-1 text-sm placeholder-gray-500 focus:outline-none"
-        type="text"
-        placeholder="Check out"
+        placeholder="Date"
       />
       <div className="text-xs text-gray-500 ml-1">Add dates</div>
     </div>

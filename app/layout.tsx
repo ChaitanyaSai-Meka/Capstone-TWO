@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from './src/main/Footer';
+import Footer from './src/common/Footer';
 
 export const metadata = {
   title: 'XEON', 
