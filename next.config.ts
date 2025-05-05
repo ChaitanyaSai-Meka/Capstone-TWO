@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     {
       source: '/', // Root path
       destination: '/Xeon/home', // Redirect to the /home page
-      permanent: true, // Permanent redirect (301)
+      permanent: false, // Permanent redirect (301)
     },
   ],
 };

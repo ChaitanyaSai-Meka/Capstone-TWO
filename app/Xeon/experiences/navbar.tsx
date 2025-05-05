@@ -1,24 +1,13 @@
 'use client';
-import { useEffect, useState } from'react';
 import React from 'react'
 import { User, Menu } from 'lucide-react';
 import Link from 'next/link';
-import '../../globals.css'
+import '../../globals.css';
 
 const Navbar = () => {
 
-  const {isScrolled,setIsScrolled}=useState(false);
-  useEffect(()=>{
-    const handleScroll=()=>{
-      setIsScrolled(window.scrollY>0);
-    }
-
-    window.addEventListener('scroll',handleScroll);
-    return ()=>window.removeEventListener('scroll',handleScroll);
-  },[])
-
   return (
-    <div>
+    <div >
       {/*Top Nav*/}
       <div className='flex'>
         <div>
@@ -26,7 +15,7 @@ const Navbar = () => {
             X
           </h1>
         </div>
-        <div className='flex gap-4 mt-7 sizing ml-135 mr-[339px]'>
+        <div className='flex gap-4 mt-5 sizing ml-135 mr-[339px]'>
           <button className='font-regular px-4 py-2 hover:bg-gray-200 hover:px-4 hover:py-2  hover:rounded-3xl opacity-50 hover:opacity-70'>
             <Link href="/Xeon/home">
                 Home

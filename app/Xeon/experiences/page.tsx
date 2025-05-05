@@ -1,13 +1,15 @@
+'use client';
 import React from 'react'
 import Navbar from './navbar';
 import Footer from '../../src/common/Footer';
 
 const Experiences = () => {
+
     return (
         <div>
             {/*Navbar Starts*/}
-            <div>
-                <Navbar/>
+            <div> 
+                <Navbar />
             </div>
             {/*Navbar Ends*/}
             <div className="py-200">
