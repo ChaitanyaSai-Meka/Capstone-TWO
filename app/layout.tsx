@@ -1,18 +1,35 @@
+import { Playfair_Display, Lato } from 'next/font/google';
 import React from 'react';
-import Footer from './src/common/Footer';
+
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-playfair', 
+});
+
+const lato = Lato({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+  variable: '--font-lato',
+});
 
 export const metadata = {
-  title: 'XEON', 
+  title: 'XEON',
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="../logo.png" /> 
+        <link rel="icon" href="/logo.png" /> {/* Adjusted path; ensure logo.png is in the public folder */}
       </head>
-      <body>{children}</body>
+      <body className={`${playfairDisplay.variable} ${lato.variable}`}>
+        {children}
+      </body>
     </html>
-    
   );
 }
