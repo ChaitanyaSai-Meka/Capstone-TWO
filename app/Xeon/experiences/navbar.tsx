@@ -1,10 +1,12 @@
 'use client';
-import React from 'react'
+import React,{useState} from 'react'
 import { User, Menu } from 'lucide-react';
 import Link from 'next/link';
 import '../../globals.css';
+import Login_or_Signup from '@/app/src/common/login_or_signup';
 
 const Navbar = () => {
+  const [showLogin, setShowLogin] = useState(false);
 
   return (
     <div >
@@ -35,7 +37,9 @@ const Navbar = () => {
               </Link>
             </button>
           </h1>
-          <button className='button-style mt-4 px-4 py-1 button'>
+          <button className='button-style mt-4 px-4 py-1 button'
+          onClick={() => setShowLogin(true)}
+          >
             <div className='flex gap-4'>
               <Menu style={{ objectFit: "contain", height: 18 }} className='mt-2' />
               <User style={{ objectFit: "contain", height: 32 }} />
@@ -95,6 +99,19 @@ const Navbar = () => {
 </div>
       {/*bottom Nav Ends*/}
       <div className="border-b-1 border-gray-300 pb-2"></div>
+      {showLogin && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center glass-2"
+          onClick={() => setShowLogin(false)}
+        >
+          <div
+            className="relative w-full max-w-md mx-auto rounded-2xl shadow-lg p-6 bg-white"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Login_or_Signup />
+          </div>
+        </div>
+      )}
     </div>
   )
 }

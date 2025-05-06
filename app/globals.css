@@ -2,6 +2,7 @@
 
 html,body{
   background-color: whitesmoke;
+  font-family: 'Montserrat'
 }
 /*Custom Colors*/
 @theme{
@@ -12,13 +13,14 @@ html,body{
 
 .textsize{
   font-size: 40px;
-  /* font-family: 'Playfair Display', serif; */
+  /* font-family: 'Montserrat'; */
   /* font-weight: 600; */
   letter-spacing: 0.5px;
 }
 
 .why_us{
   letter-spacing: 0.5px;
+  /* font-family: 'Montserrat'; */
   font-weight: bold;
 }
 
