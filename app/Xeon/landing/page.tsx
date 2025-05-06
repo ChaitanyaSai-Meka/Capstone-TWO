@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import '../../globals.css';
 import Image from 'next/image';
 import testimonials from "../../src/data/testimonialsData";
@@ -8,6 +8,33 @@ import Footer from './footer';
 import Navbar from "./navbar";
 
 export default function LandingPage() {
+    const [price, setPrice] = useState(0);
+    const targetPrice = 20000;
+    const duration = 1500; 
+
+    useEffect(() => {
+        let startTime: number | null = null;
+        let animationFrameId: number;
+
+        const animate = (currentTime: number) => {
+            if (!startTime) startTime = currentTime;
+            const progress = Math.min((currentTime - startTime) / duration, 1);
+            
+            setPrice(Math.floor(progress * targetPrice));
+
+            if (progress < 1) {
+                animationFrameId = requestAnimationFrame(animate);
+            }
+        };
+
+        animationFrameId = requestAnimationFrame(animate);
+
+        return () => {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+        };
+    }, []);
 
     return (
         //main-div
@@ -30,7 +57,7 @@ export default function LandingPage() {
                     <h1 className="textsize font-bold text-black leading-tight">
                         <span className="block">Redefine hosting excellence</span>
                         <span className="block mt-2">Starts at
-                            <span className="ml-4 mr-1 text-Paynes-Grey ">₹20,000</span>/night</span>
+                            <span className="ml-4 mr-1 text-Paynes-Grey">₹{price.toLocaleString()}</span>/night</span>
                         <span className="block mt-2">Elevate your listing</span>
                     </h1>
                     <input className="px-5 py-3 text-lg border-1 border-gray-800 bg-transparent text-Paynes-Grey rounded-4xl w-[400px] placeholder-Paynes-Grey mt-5" placeholder="Search">
