@@ -19,7 +19,7 @@ const Login_or_Signup = () => {
         <div className="border border-gray-300 rounded-xl px-3 py-3">
           <input
             type="text"
-            placeholder="you@example.com"
+            placeholder="you@gmail.com"
             className="w-full border-none focus:outline-none text-sm mt-1"
           />
         </div>
