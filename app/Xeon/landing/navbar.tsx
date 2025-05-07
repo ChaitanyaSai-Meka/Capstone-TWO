@@ -26,8 +26,10 @@ const Navbar = () => {
                     XEON
                 </Link>
             </h1>
-            <button className="px-8 py-2 rounded-full bg-gradient-to-b from-[#536878] to-[#3f535c] text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200 mr-4 sm:mr-20">
-                Join the Elite
+            <button className="px-8 py-2 rounded-full bg-gradient-to-b from-[#536878] to-[#3f535c] text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200 mr-4 sm:mr-20 hover:cursor-pointer">
+                <Link href='/Xeon/join'>
+                    Join The Elite
+                </Link>
             </button>
         </div>
     );
