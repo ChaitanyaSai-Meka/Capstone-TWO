@@ -6,6 +6,7 @@ import testimonials from "../../src/data/testimonialsData";
 import { WobbleCard } from "../../src/components/ui/wobble-card";
 import Footer from './footer';
 import Navbar from "./navbar";
+import { motion } from "framer-motion";
 
 export default function LandingPage() {
     const [price, setPrice] = useState(0);
@@ -54,12 +55,17 @@ export default function LandingPage() {
             <div className="flex flex-col md:flex-row items-center justify-between px-10 py-20 mb-5">
                 {/* Text Section */}
                 <div className="text-center py-10 ml-25">
-                    <h1 className="textsize font-bold text-black leading-tight">
+                <motion.h1 
+                        className="textsize font-bold text-black leading-tight"
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                    >
                         <span className="block">Redefine hosting excellence</span>
-                        <span className="block mt-2">Starts at
+                        <span className="block mt-2">Earn from
                             <span className="ml-4 mr-1 text-Paynes-Grey">₹{price.toLocaleString()}</span>/night</span>
-                        <span className="block mt-2">Elevate your listing</span>
-                    </h1>
+                        <span className="block mt-2">List. Connect. Elevate.</span>
+                    </motion.h1>
                     <input className="px-5 py-3 text-lg border-1 border-gray-800 bg-transparent text-Paynes-Grey rounded-4xl w-[400px] placeholder-Paynes-Grey mt-5" placeholder="Search">
 
                     </input>
@@ -96,10 +102,10 @@ export default function LandingPage() {
                         >
                             <div className="max-w-xs">
                                 <h2 className="text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-Paynes-Grey">
-                                    Host your property today — in minutes.
+                                    Get listed in minutes. Start earning sooner.
                                 </h2>
                                 <p className="mt-4 text-left text-base/6 text-black">
-                                    From boutique stays to luxurious retreats, we make your property shine for the right audience.
+                                    Whether it’s a city suite or a coastal villa, we help your space get noticed by the right guests.
                                 </p>
                             </div>
                             <Image
@@ -112,19 +118,19 @@ export default function LandingPage() {
                         </WobbleCard>
                         <WobbleCard containerClassName="col-span-1 min-h-[300px]">
                             <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-Paynes-Grey">
-                                No hassle, no stress, no delays.
+                                No setup fees. No tech headaches.
                             </h2>
                             <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-black">
-                                List your hotel with zero upfront cost. We handle the tech so you can focus on hospitality.
+                                You focus on hosting — we handle everything else behind the scenes.
                             </p>
                         </WobbleCard>
                         <WobbleCard containerClassName="col-span-1 lg:col-span-3 bg-blue-900 min-h-[500px] lg:min-h-[600px] xl:min-h-[300px]">
                             <div className="max-w-sm">
                                 <h2 className="max-w-sm md:max-w-lg  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-Paynes-Grey">
-                                    We empower hotel owners across the globe.
+                                    Join a trusted global hosting network.
                                 </h2>
                                 <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-black">
-                                    Join hundreds of top-tier hosts who trust us to connect them with the right guests — fast, easy, and rewarding.
+                                    Xeon connects your property to premium guests with ease, speed, and reliability.
                                 </p>
                             </div>
                             <Image
@@ -179,9 +185,10 @@ export default function LandingPage() {
                 {/* Text Section */}
                 <div className="flex items-center justify-center mt-10">
                     <h1 className="text-6xl text-center partners mt-8">
-                        <span className="block mt-2">Behind every stay,</span>
-                        <span className="block mt-2">a host with a
-                            <span className="text-Paynes-Grey ml-3">vision.</span>
+                        <span className="block mt-2">
+                        <span className="text-Paynes-Grey mr-3">Success 
+                        </span>speaks louder.,</span>
+                        <span className="block mt-2">Here’s what our hosts have to say.
                         </span>
                     </h1>
                 </div>
@@ -239,8 +246,8 @@ export default function LandingPage() {
 
                 {/* Still have questions? */}
                 <div className="w-full max-w-md text-center space-y-4">
-                    <h3 className="text-xl font-semibold">Still have questions?</h3>
-                    <p className="text-gray-600">Get expert answers from a seasoned XEON host.</p>
+                    <h3 className="text-xl font-semibold">Need clarity before you list?</h3>
+                    <p className="text-gray-600">Chat with a seasoned host in your area.</p>
                     <button className="mt-2 bg-Paynes-Grey text-white px-8 py-3 rounded-full mb-5">
                         Ask a host
                     </button>

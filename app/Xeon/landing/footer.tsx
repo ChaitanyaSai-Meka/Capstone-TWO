@@ -48,8 +48,8 @@ const Footer = () => {
                     <h2 className="text-Paynes-Grey font-semibold mb-3">Discover</h2>
                     <ul className="space-y-2">
                         <li><a href="#" className="hover:underline">Curated Experiences</a></li>
-                        <li><a href="#" className="hover:underline">Xeon LUXE – Engineered for Elegance</a></li>
-                        <li><a href="#" className="hover:underline">Xeon Sakura – A Touch of Japan’s Finest</a></li>
+                        <li><a href="#" className="hover:underline">Xeon LUXE — Where refinement meets revenue</a></li>
+                        <li><a href="#" className="hover:underline">Xeon Sakura — Inspired by Japan’s elegance</a></li>
                         <li><a href="#" className="hover:underline">Cultural Escapes</a></li>
                         <li><a href="#" className="hover:underline">Urban Retreats</a></li>
                         <li><a href="#" className="hover:underline">Nature & Tranquility</a></li>
