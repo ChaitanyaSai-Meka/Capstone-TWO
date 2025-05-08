@@ -25,7 +25,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/logo.png" /> {/* Adjusted path; ensure logo.png is in the public folder */}
+        <link rel="icon" href="/logo.png" /> 
       </head>
       <body className={`${playfairDisplay.variable} ${lato.variable}`}>
         {children}
