@@ -7,13 +7,30 @@ import { WobbleCard } from "../../src/components/ui/wobble-card";
 import Footer from './footer';
 import Navbar from "./navbar";
 import { motion } from "framer-motion";
+import Lenis from 'lenis';
 
 export default function LandingPage() {
     const [price, setPrice] = useState(0);
     const targetPrice = 20000;
     const duration = 1500; 
 
+    // Lenis smooth scroll initialization
     useEffect(() => {
+        const lenis = new Lenis({
+            duration: 2.0, // Duration of the smooth scroll
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing function
+            smoothWheel: true,
+        });
+
+        // Animation frame for Lenis
+        const raf = (time: number) => {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        };
+
+        requestAnimationFrame(raf);
+
+        // Price animation
         let startTime: number | null = null;
         let animationFrameId: number;
 
@@ -30,7 +47,9 @@ export default function LandingPage() {
 
         animationFrameId = requestAnimationFrame(animate);
 
+        // Cleanup both Lenis and price animation
         return () => {
+            lenis.destroy();
             if (animationFrameId) {
                 cancelAnimationFrame(animationFrameId);
             }
@@ -41,14 +60,6 @@ export default function LandingPage() {
         //main-div
         <div className="b h-full w-full">
             {/*Nav-Bar Div*/}
-            {/* <div className="flex justify-between">
-                <h1 className="mt-5 ml-20 text-3xl text-Paynes-Grey">
-                    XEON
-                </h1>
-                <button className="px-8 py-2 rounded-full bg-gradient-to-b from-[#536878] to-[#3f535c] text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200 mt-5 mr-20">
-                    Join the Elite
-                </button>
-            </div> */}
             <Navbar/>
             {/*Nav-Bar Div Ends*/}
             {/*Main-Section*/}
@@ -67,7 +78,6 @@ export default function LandingPage() {
                         <span className="block mt-2">List. Connect. Elevate.</span>
                     </motion.h1>
                     <input className="px-5 py-3 text-lg border-1 border-gray-800 bg-transparent text-Paynes-Grey rounded-4xl w-[400px] placeholder-Paynes-Grey mt-5" placeholder="Search">
-
                     </input>
                 </div>
                 {/* Text Section Ends */}
@@ -243,7 +253,6 @@ export default function LandingPage() {
                 </div>
                 {/* FAQ List Ends*/}
 
-
                 {/* Still have questions? */}
                 <div className="w-full max-w-md text-center space-y-4">
                     <h3 className="text-xl font-semibold">Need clarity before you list?</h3>
@@ -253,7 +262,6 @@ export default function LandingPage() {
                     </button>
                 </div>
             </div>
-
             {/*Questions Section-Ends*/}
 
             {/*Footer Section*/}

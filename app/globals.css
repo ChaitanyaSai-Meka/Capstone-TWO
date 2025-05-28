@@ -141,3 +141,14 @@ html,body{
 
 
 /* globals.css */
+
+/* Hide scrollbar for all browsers */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+/* Hide scrollbar for WebKit-based browsers (Chrome, Safari, Edge) */
+html::-webkit-scrollbar {
+  display: none;
+}
