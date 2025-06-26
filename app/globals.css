@@ -56,6 +56,10 @@ html,body{
   animation: infinite-scroll 30s linear infinite;
 }
 
+.animate-infinite-scroll:hover {
+  animation-play-state: paused;
+}
+
 @keyframes infinite-scroll {
   0% {
     transform: translateX(0%);

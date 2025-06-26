@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react' // Corrected: Removed extra '='
+import React, { useState } from 'react';
 import { User, Menu } from 'lucide-react';
 import Link from 'next/link';
 import Login_or_Signup from '@/app/src/common/login_or_signup';
