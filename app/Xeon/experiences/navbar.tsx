@@ -10,46 +10,52 @@ const Navbar = () => {
 
   return (
     <div >
-      {/*Top Nav*/}
-      <div className='flex'>
+      {/* Top Nav */}
+      <div className='flex justify-between items-center w-full px-4 sm:px-20 py-5'>
+        {/* Left Section - Logo */}
         <div>
-          <h1 className="text-4xl text-Paynes-Grey mt-5 sm:ml-20">
+          <h1 className="text-4xl text-Paynes-Grey">
             X
           </h1>
         </div>
-        <div className='flex gap-4 mt-5 sizing ml-135 mr-[339px]'>
-          <button className='font-regular px-4 py-2 hover:bg-gray-200 hover:px-4 hover:py-2  hover:rounded-3xl opacity-50 hover:opacity-70'>
+
+        {/* Center Section - Navigation */}
+        <div className='flex gap-8 absolute left-1/2 transform -translate-x-1/2'>
+          <button className='font-regular px-4 py-2 hover:bg-gray-200 hover:px-4 hover:py-2 hover:rounded-3xl opacity-50 hover:opacity-70'>
             <Link href="/Xeon/home">
-                Home
+              Home
             </Link>
           </button>
-          <button className='font-medium px-4 py-2  hover:px-4 hover:py-2 hover:rounded-3xl '>
+          <button className='font-medium px-4 py-2 hover:px-4 hover:py-2 hover:rounded-3xl'>
             <Link href='/Xeon/experiences'>
-                Experiences
+              Experiences
             </Link>
           </button>
         </div>
-        <div className='flex gap-4'>
-          <h1 className='mt-5 size-join font-medium'>
-            <button className="px-4 py-2 hover:bg-gray-200 hover:px-4 hover:py-2  hover:rounded-3xl">
+
+        {/* Right Section - Join the Elite & User Menu */}
+        <div className='flex items-center gap-4'>
+          <h1 className='size-join font-medium'>
+            <button className="px-4 py-2 hover:bg-gray-200 hover:px-4 hover:py-2 hover:rounded-3xl">
               <Link href="/Xeon/landing">
                 Join the Elite
               </Link>
             </button>
           </h1>
-          <button className='button-style mt-4 px-4 py-1 button'
-          onClick={() => setShowLogin(true)}
+          <button
+            className='button-style px-4 py-1 button hover:cursor-pointer rounded-full border border-gray-300'
+            onClick={() => setShowLogin(true)}
           >
-            <div className='flex gap-4'>
-              <Menu style={{ objectFit: "contain", height: 18 }} className='mt-2' />
-              <User style={{ objectFit: "contain", height: 32 }} />
+            <div className='flex gap-2.5 items-center'>
+              <Menu style={{ height: 18 }} />
+              <User style={{ height: 32 }} />
             </div>
           </button>
         </div>
       </div>
       {/*Top Nav Ends*/}
       {/*bottom Nav */}
-      <div className="flex justify-center py-5">
+      <div className="flex justify-center py-4">
   <div className="border border-gray-300 rounded-full px-4 py-2 flex items-center gap-4 w-[700px] bg-white shadow-md">
     <div className="flex-1">
       <input
