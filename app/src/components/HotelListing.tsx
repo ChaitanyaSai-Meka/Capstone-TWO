@@ -85,8 +85,8 @@ const HotelListing: React.FC<HotelListingProps> = ({ searchLocation }) => {
 
   if (filteredHotels.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[300px] py-16">
-        <span className="text-[#536878] font-medium text-lg">No hotels found for &apos;{searchLocation.trim()}&apos;</span>
+      <div className="flex flex-col items-center justify-center min-h-[600px] py-16">
+        <span className="text-[#536878] font-medium text-lg">No hotels found in &apos;{searchLocation.trim()}&apos;</span>
       </div>
     );
   }
