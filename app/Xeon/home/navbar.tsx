@@ -4,7 +4,12 @@ import { User, Menu } from 'lucide-react';
 import Link from 'next/link';
 import Login_or_Signup from '@/app/src/common/login_or_signup';
 
-const Navbar = () => {
+interface NavbarProps {
+  searchLocation: string;
+  setSearchLocation: (value: string) => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ searchLocation, setSearchLocation }) => {
   const [showLogin, setShowLogin] = useState(false);
 
   return (
@@ -62,6 +67,8 @@ const Navbar = () => {
               className="w-full px-2 py-1 text-sm placeholder-gray-500 focus:outline-none"
               type="text"
               placeholder="Where"
+              value={searchLocation}
+              onChange={e => setSearchLocation(e.target.value)}
             />
             <div className="text-xs text-gray-500 ml-2">Search destinations</div>
           </div>

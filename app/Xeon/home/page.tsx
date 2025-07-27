@@ -1,20 +1,22 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import '../../globals.css';
 import Navbar from "./navbar";
 import Footer from "../../src/common/Footer";
 import HotelListing from "../../src/components/HotelListing";
 
-const page = () => {
+const Page = () => {
+  const [searchLocation, setSearchLocation] = useState("");
+
   return (
     <div className="h-full w-full">
       {/*Navbar*/}
         <div>
-          <Navbar/> 
+          <Navbar searchLocation={searchLocation} setSearchLocation={setSearchLocation} />
         </div>  
       {/*Navbar Ends*/}
         <div className="py-8">
-          <HotelListing />
+          <HotelListing searchLocation={searchLocation} />
         </div> 
       {/*Footer*/}
       <div className="border-b-1 border-gray-300 pb-2"></div>
@@ -26,4 +28,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
