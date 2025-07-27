@@ -1,11 +1,19 @@
 import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
+  },
   redirects: async () => [
     {
-      source: '/', // Root path
-      destination: '/Xeon/home', // Redirect to the /home page
-      permanent: false, // Permanent redirect (301)
+      source: '/', 
+      destination: '/Xeon/home', 
+      permanent: false, 
     },
   ],
 };
