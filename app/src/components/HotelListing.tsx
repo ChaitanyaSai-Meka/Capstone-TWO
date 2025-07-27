@@ -25,11 +25,9 @@ const HotelListing: React.FC = () => {
         const data = await response.json();
         setAllHotels(data);
         
-        // Filter popular hotels (rating > 4.5)
         const popular = data.filter((hotel: Hotel) => hotel.rating > 4.5);
         setPopularHotels(popular);
         
-        // Filter other hotels (rating <= 4.5)
         const other = data.filter((hotel: Hotel) => hotel.rating <= 4.5);
         setOtherHotels(other);
       } catch (error) {
@@ -104,7 +102,7 @@ const HotelListing: React.FC = () => {
           ref={popularScrollRef}
           className={
             'flex gap-6 overflow-x-auto' +
-            ' no-scrollbar' // ensure no visible scrollbar
+            ' no-scrollbar' 
           }
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', overflowY: 'hidden' }}
         >

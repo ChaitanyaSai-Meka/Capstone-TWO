@@ -12,7 +12,7 @@ interface HotelCardProps {
 
 const HotelCard: React.FC<HotelCardProps> = ({ image, name, rating, price, showGuestFavourite = true }) => {
   return (
-    <div className="relative group cursor-pointer transition-transform duration-300 hover:scale-105">
+    <div className="relative group cursor-pointer transition-transform duration-300 hover:scale-100">
       {/* Hotel Image */}
       <div className="relative overflow-hidden rounded-xl">
         <Image
