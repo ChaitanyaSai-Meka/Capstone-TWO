@@ -1,12 +1,33 @@
 'use client';
-import React,{useState} from 'react'
+import React, { useState, useEffect } from 'react';
 import { User, Menu } from 'lucide-react';
 import Link from 'next/link';
 import '../../globals.css';
 import Login_or_Signup from '@/app/src/common/login_or_signup';
+import { getAuth, onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
+import app from '@/app/src/lib/firebase';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
   const [showLogin, setShowLogin] = useState(false);
+  const [user, setUser] = useState<FirebaseUser | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const auth = getAuth(app);
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      setUser(firebaseUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleProfileClick = () => {
+    if (user) {
+      router.push('/Xeon/profile');
+    } else {
+      setShowLogin(true);
+    }
+  };
 
   return (
     <div >
@@ -44,7 +65,7 @@ const Navbar = () => {
           </h1>
           <button
             className='button-style px-4 py-1 button hover:cursor-pointer rounded-full border border-gray-300'
-            onClick={() => setShowLogin(true)}
+            onClick={handleProfileClick}
           >
             <div className='flex gap-2.5 items-center'>
               <Menu style={{ height: 18 }} />
@@ -114,7 +135,10 @@ const Navbar = () => {
             className="relative w-full max-w-md mx-auto rounded-2xl shadow-lg p-6 bg-white"
             onClick={(e) => e.stopPropagation()}
           >
-            <Login_or_Signup />
+            <Login_or_Signup onSuccess={() => {
+              setShowLogin(false);
+              router.push('/Xeon/home');
+            }} />
           </div>
         </div>
       )}
