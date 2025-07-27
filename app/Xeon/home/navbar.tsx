@@ -99,6 +99,13 @@ const Navbar: React.FC<NavbarProps> = ({ searchLocation, setSearchLocation }) =>
               className="w-full px-1 py-1 text-sm placeholder-gray-500 focus:outline-none"
               type="text"
               placeholder="Check in"
+              maxLength={2}
+              inputMode="numeric"
+              pattern="[0-9]*"
+              onInput={e => {
+                const input = e.target as HTMLInputElement;
+                input.value = input.value.replace(/[^0-9]/g, '').slice(0, 2);
+              }}
             />
             <div className="text-xs text-gray-500 ml-1">Add dates</div>
           </div>
@@ -108,6 +115,13 @@ const Navbar: React.FC<NavbarProps> = ({ searchLocation, setSearchLocation }) =>
               className="w-full px-1 py-1 text-sm placeholder-gray-500 focus:outline-none"
               type="text"
               placeholder="Check out"
+              maxLength={2}
+              inputMode="numeric"
+              pattern="[0-9]*"
+              onInput={e => {
+                const input = e.target as HTMLInputElement;
+                input.value = input.value.replace(/[^0-9]/g, '').slice(0, 2);
+              }}
             />
             <div className="text-xs text-gray-500 ml-1">Add dates</div>
           </div>
