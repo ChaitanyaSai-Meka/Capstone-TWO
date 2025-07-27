@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
 import app from '../lib/firebase';
-import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import type { FirebaseError } from 'firebase/app';
 
 interface LoginOrSignupProps {
@@ -30,11 +29,13 @@ const Login_or_Signup: React.FC<LoginOrSignupProps> = ({ onSuccess }) => {
     setLoading(true);
     setError(null);
     try {
+      // Try to create the user first
       await createUserWithEmailAndPassword(auth, email, password);
       if (onSuccess) onSuccess();
     } catch (signupErr: unknown) {
       if (isFirebaseError(signupErr)) {
         if (signupErr.code === 'auth/email-already-in-use') {
+          // If user exists, try to sign in
           try {
             await signInWithEmailAndPassword(auth, email, password);
             if (onSuccess) onSuccess();
@@ -56,24 +57,6 @@ const Login_or_Signup: React.FC<LoginOrSignupProps> = ({ onSuccess }) => {
         setError(signupErr.message || 'Failed to sign up');
       } else {
         setError('Failed to sign up');
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleGoogleSignIn = async () => {
-    setLoading(true);
-    setError(null);
-    const provider = new GoogleAuthProvider();
-    try {
-      await signInWithPopup(auth, provider);
-      if (onSuccess) onSuccess();
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message || 'Google sign-in failed');
-      } else {
-        setError('Google sign-in failed');
       }
     } finally {
       setLoading(false);
@@ -122,28 +105,6 @@ const Login_or_Signup: React.FC<LoginOrSignupProps> = ({ onSuccess }) => {
         </button>
       </form>
       {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
-      <div className="flex items-center w-full mt-3">
-        <div className="flex-1 border-t border-gray-300"></div>
-        <div className="px-4">
-          <p className="text-gray-600">or</p>
-        </div>
-        <div className="flex-1 border-t border-gray-300"></div>
-      </div>
-      <button
-        className="w-full flex items-center justify-center border border-gray-400 rounded-lg py-2 hover:bg-gray-100 transition duration-200 mt-3"
-        onClick={handleGoogleSignIn}
-        disabled={loading}
-        type="button"
-      >
-        <Image
-          src="https://www.svgrepo.com/show/475656/google-color.svg"
-          alt="Google logo"
-          width={20}
-          height={20}
-          className="mr-3"
-        />
-        Continue with Google
-      </button>
     </div>
   );
 };
