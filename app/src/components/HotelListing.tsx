@@ -63,7 +63,12 @@ const HotelListing: React.FC = () => {
   };
 
   if (allHotels.length === 0) {
-    return <div className="text-center py-8">Loading hotels...</div>;
+    return (
+      <div className="flex flex-col items-center justify-center py-8">
+        <span className="w-8 h-8 mb-2 border-4 border-[#536878] border-t-transparent rounded-full animate-spin"></span>
+        <span className="text-[#536878] font-medium">Loading hotels...</span>
+      </div>
+    );
   }
 
   return (
