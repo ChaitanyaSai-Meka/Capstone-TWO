@@ -60,7 +60,7 @@ const Navbar: React.FC<NavbarProps> = ({ searchLocation, setSearchLocation }) =>
 
         {/* Right Section - Join the Elite & User Menu */}
         <div className='flex items-center gap-4'>
-          <h1 className='size-join font-medium'>
+          <h1 className='size-join font-medium hidden md:block'>
             <button className="px-4 py-2 hover:bg-gray-200 hover:px-4 hover:py-2 hover:rounded-3xl">
               <Link href="/Xeon/landing">
                 Join the Elite
