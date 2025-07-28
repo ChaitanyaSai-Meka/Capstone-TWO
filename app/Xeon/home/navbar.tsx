@@ -10,12 +10,18 @@ import { useRouter } from 'next/navigation';
 interface NavbarProps {
   searchLocation: string;
   setSearchLocation: (value: string) => void;
+  showLogin?: boolean;
+  setShowLogin?: (value: boolean) => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ searchLocation, setSearchLocation }) => {
-  const [showLogin, setShowLogin] = useState(false);
+const Navbar: React.FC<NavbarProps> = ({ searchLocation, setSearchLocation, showLogin, setShowLogin }) => {
+  const [internalShowLogin, setInternalShowLogin] = useState(false);
   const [user, setUser] = useState<FirebaseUser | null>(null);
   const router = useRouter();
+
+  // Use external state if provided, otherwise use internal state
+  const isLoginVisible = showLogin !== undefined ? showLogin : internalShowLogin;
+  const setIsLoginVisible = setShowLogin || setInternalShowLogin;
 
   useEffect(() => {
     const auth = getAuth(app);
@@ -29,7 +35,7 @@ const Navbar: React.FC<NavbarProps> = ({ searchLocation, setSearchLocation }) =>
     if (user) {
       router.push('/Xeon/profile');
     } else {
-      setShowLogin(true);
+      setIsLoginVisible(true);
     }
   };
 
@@ -176,17 +182,17 @@ const Navbar: React.FC<NavbarProps> = ({ searchLocation, setSearchLocation }) =>
 
       <div className="border-b border-gray-300 pb-2"></div>
 
-      {showLogin && (
+      {isLoginVisible && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center glass-2"
-          onClick={() => setShowLogin(false)}
+          onClick={() => setIsLoginVisible(false)}
         >
           <div
             className="relative w-full max-w-md mx-auto rounded-2xl shadow-lg p-6 bg-white"
             onClick={(e) => e.stopPropagation()}
           >
             <Login_or_Signup onSuccess={() => {
-              setShowLogin(false);
+              setIsLoginVisible(false);
               router.push('/Xeon/home');
             }} />
           </div>

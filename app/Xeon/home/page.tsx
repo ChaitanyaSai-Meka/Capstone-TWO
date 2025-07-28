@@ -5,9 +5,12 @@ import Navbar from "./navbar";
 import Footer from "../../src/common/Footer";
 import HotelListing from "../../src/components/HotelListing";
 import Lenis from "lenis";
+import { useSearchParams } from "next/navigation";
 
 const Page = () => {
   const [searchLocation, setSearchLocation] = useState("");
+  const [showLogin, setShowLogin] = useState(false);
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -23,16 +26,29 @@ const Page = () => {
 
     requestAnimationFrame(raf);
 
+    // Check for login or signup parameters
+    const loginParam = searchParams.get('login');
+    const signupParam = searchParams.get('signup');
+    
+    if (loginParam === 'true' || signupParam === 'true') {
+      setShowLogin(true);
+    }
+
     return () => {
       lenis.destroy();
     };
-  }, []);
+  }, [searchParams]);
 
   return (
     <div className="h-full w-full">
       {/*Navbar*/}
         <div>
-          <Navbar searchLocation={searchLocation} setSearchLocation={setSearchLocation} />
+          <Navbar 
+            searchLocation={searchLocation} 
+            setSearchLocation={setSearchLocation}
+            showLogin={showLogin}
+            setShowLogin={setShowLogin}
+          />
         </div>  
       {/*Navbar Ends*/}
         <div className="py-8">

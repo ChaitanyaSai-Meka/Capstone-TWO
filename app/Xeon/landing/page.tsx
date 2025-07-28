@@ -8,12 +8,35 @@ import Footer from "./footer";
 import Navbar from "./navbar";
 import { motion } from "framer-motion";
 import Lenis from "lenis";
+import { useRouter } from "next/navigation";
 
 export default function LandingPage() {
   const [booking, setBooking] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
   const targetPrice = 1500;
   const initialAnimationDuration = 2500;
+  const router = useRouter();
+
   useEffect(() => {
+    // Check screen size and redirect small screens to home page
+    const checkScreenSize = () => {
+      const isSmallScreen = window.innerWidth < 768; // md breakpoint
+      if (isSmallScreen) {
+        router.push('/Xeon/home');
+        return;
+      }
+    };
+
+    // Check on initial load
+    checkScreenSize();
+
+    // Listen for window resize
+    const handleResize = () => {
+      checkScreenSize();
+    };
+
+    window.addEventListener('resize', handleResize);
+
     const lenis = new Lenis({
       duration: 2.0,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -54,6 +77,7 @@ export default function LandingPage() {
 
     return () => {
       lenis.destroy();
+      window.removeEventListener('resize', handleResize);
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
       }
@@ -61,7 +85,15 @@ export default function LandingPage() {
         clearInterval(intervalId);
       }
     };
-  }, []);
+  }, [router]);
+
+  const handleLoginClick = () => {
+    router.push('/Xeon/home?login=true');
+  };
+
+  const handleSignupClick = () => {
+    router.push('/Xeon/home?signup=true');
+  };
 
   return (
     //main-div
@@ -92,7 +124,25 @@ export default function LandingPage() {
           <input
             className="px-5 py-3 text-lg border-1 border-gray-800 bg-transparent text-Paynes-Grey rounded-4xl w-[400px] placeholder-Paynes-Grey mt-5"
             placeholder="Search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           ></input>
+          
+          {/* Login and Signup Buttons */}
+          <div className="flex gap-4 justify-center mt-4">
+            <button
+              onClick={handleLoginClick}
+              className="px-6 py-2 bg-Paynes-Grey text-white rounded-full hover:bg-gray-700 transition-colors duration-200 font-medium"
+            >
+              Login
+            </button>
+            <button
+              onClick={handleSignupClick}
+              className="px-6 py-2 border border-Paynes-Grey text-Paynes-Grey rounded-full hover:bg-Paynes-Grey hover:text-white transition-colors duration-200 font-medium"
+            >
+              Sign Up
+            </button>
+          </div>
         </div>
         {/* Text Section Ends */}
         {/*Map-Section*/}
