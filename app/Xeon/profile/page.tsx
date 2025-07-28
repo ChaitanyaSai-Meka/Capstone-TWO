@@ -1,22 +1,13 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import { getAuth, signOut, onAuthStateChanged, User } from 'firebase/auth';
+import React from 'react';
+import { getAuth, signOut } from 'firebase/auth';
 import app from '@/app/src/lib/firebase';
 import { useRouter } from 'next/navigation';
+import { useUser } from '@/app/src/lib/userContext';
 
 const Profile = () => {
   const router = useRouter();
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const auth = getAuth(app);
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser);
-      setLoading(false);
-    });
-    return () => unsubscribe();
-  }, []);
+  const { user, userData, loading } = useUser();
 
   const handleLogout = async () => {
     const auth = getAuth(app);
@@ -52,10 +43,14 @@ const Profile = () => {
       </div>
       {/* User Info Below */}
       <div className="w-full flex flex-col items-center mb-8">
-        <div className="font-semibold text-xl mb-4 text-center w-full">{user.displayName || 'Chaitanya Sai Meka'}</div>
+        <div className="font-semibold text-xl mb-4 text-center w-full">
+          {userData?.username || user.displayName || 'User'}
+        </div>
         <div className="w-full max-w-xs flex flex-col gap-4">
           <div className="text-gray-600"><b>Email:</b> {email}</div>
-          <div className="text-gray-600"><b>Username:</b> {user.displayName ? user.displayName.replace(/\s+/g, '').toLowerCase() : 'Chaitanya'}</div>
+          <div className="text-gray-600"><b>Username:</b> {userData?.username || 'Not set'}</div>
+          <div className="text-gray-600"><b>UUID:</b> {userData?.uuid || 'Not available'}</div>
+          <div className="text-gray-600"><b>Member Since:</b> {userData?.createdAt ? new Date(userData.createdAt).toLocaleDateString() : 'Not available'}</div>
           <div className="text-gray-600 mt-2"><b>About:</b> <span className="font-normal">This is your bio. Edit your profile to add more info!</span></div>
         </div>
       </div>

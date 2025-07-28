@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import HotelCard from "./HotelCard";
 
+
 interface Hotel {
   id: number;
   image: string;
@@ -10,6 +11,20 @@ interface Hotel {
   rating: number;
   price: number;
   location: string;
+  hotelId?: string;
+  chainCode?: string;
+  geoCode?: {
+    latitude: number;
+    longitude: number;
+  };
+  address?: {
+    countryCode: string;
+    stateCode: string;
+    cityName: string;
+    lines: string[];
+    postalCode: string;
+  };
+  amenities?: string[];
 }
 
 interface HotelListingProps {
@@ -24,23 +39,79 @@ const HotelListing: React.FC<HotelListingProps> = ({ searchLocation }) => {
   useEffect(() => {
     const fetchHotels = async () => {
       try {
-        const response = await fetch('/hotels.json');
-        const data = await response.json();
-        setAllHotels(data);
+        // Try to fetch from our API route first
+        const response = await fetch('/api/hotels?cityCode=NYC');
+        
+        if (response.ok) {
+          const hotels = await response.json();
+          setAllHotels(hotels);
+        } else {
+          // Fallback to local JSON if API fails
+          const fallbackResponse = await fetch('/hotels.json');
+          const data = await fallbackResponse.json();
+          setAllHotels(data);
+        }
       } catch (error) {
         console.error('Error fetching hotels:', error);
+        // Fallback to local JSON if API fails
+        try {
+          const response = await fetch('/hotels.json');
+          const data = await response.json();
+          setAllHotels(data);
+        } catch (fallbackError) {
+          console.error('Error fetching fallback hotels:', fallbackError);
+        }
       }
     };
     fetchHotels();
   }, []);
 
-  const filteredHotels = searchLocation.trim()
-    ? allHotels.filter(
+  const [searchingHotels, setSearchingHotels] = useState(false);
+
+  // Function to search hotels by location using our API route
+  const searchHotelsByLocation = async (location: string) => {
+    if (!location.trim()) return allHotels;
+    
+    setSearchingHotels(true);
+    try {
+      const response = await fetch(`/api/hotels?location=${encodeURIComponent(location.trim())}`);
+      
+      if (response.ok) {
+        const hotels = await response.json();
+        return hotels;
+      } else {
+        return allHotels.filter(
+          hotel =>
+            hotel.location &&
+            hotel.location.toLowerCase().includes(location.trim().toLowerCase())
+        );
+      }
+    } catch (error) {
+      console.error('Error searching hotels by location:', error);
+      return allHotels.filter(
         hotel =>
           hotel.location &&
-          hotel.location.toLowerCase().includes(searchLocation.trim().toLowerCase())
-      )
-    : allHotels;
+          hotel.location.toLowerCase().includes(location.trim().toLowerCase())
+      );
+    } finally {
+      setSearchingHotels(false);
+    }
+  };
+
+  const [filteredHotels, setFilteredHotels] = useState<Hotel[]>(allHotels);
+
+  useEffect(() => {
+    const updateFilteredHotels = async () => {
+      if (searchLocation.trim()) {
+        const results = await searchHotelsByLocation(searchLocation);
+        setFilteredHotels(results);
+      } else {
+        setFilteredHotels(allHotels);
+      }
+    };
+    
+    updateFilteredHotels();
+  }, [searchLocation, allHotels]);
 
   if (typeof window !== 'undefined') {
     console.log('Search location:', searchLocation);
@@ -74,11 +145,13 @@ const HotelListing: React.FC<HotelListingProps> = ({ searchLocation }) => {
     }
   };
 
-  if (allHotels.length === 0) {
+  if (allHotels.length === 0 || searchingHotels) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[300px] py-16">
         <span className="w-10 h-10 mb-4 border-4 border-[#536878] border-t-transparent rounded-full animate-spin"></span>
-        <span className="text-[#536878] font-medium text-lg">Loading hotels...</span>
+        <span className="text-[#536878] font-medium text-lg">
+          {searchingHotels ? 'Searching hotels...' : 'Loading hotels...'}
+        </span>
       </div>
     );
   }
@@ -109,6 +182,9 @@ const HotelListing: React.FC<HotelListingProps> = ({ searchLocation }) => {
               rating={hotel.rating}
               price={hotel.price}
               showGuestFavourite={hotel.rating > 4.5}
+              amenities={hotel.amenities}
+              location={hotel.location}
+              hotelId={hotel.hotelId}
             />
           ))}
         </div>
@@ -166,6 +242,9 @@ const HotelListing: React.FC<HotelListingProps> = ({ searchLocation }) => {
                 rating={hotel.rating}
                 price={hotel.price}
                 showGuestFavourite={true}
+                amenities={hotel.amenities}
+                location={hotel.location}
+                hotelId={hotel.hotelId}
               />
             </div>
           ))}
@@ -215,6 +294,9 @@ const HotelListing: React.FC<HotelListingProps> = ({ searchLocation }) => {
                   rating={hotel.rating}
                   price={hotel.price}
                   showGuestFavourite={false}
+                  amenities={hotel.amenities}
+                  location={hotel.location}
+                  hotelId={hotel.hotelId}
                 />
               </div>
             ))}

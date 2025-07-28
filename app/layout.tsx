@@ -1,5 +1,6 @@
 import { Playfair_Display, Lato } from 'next/font/google';
 import React from 'react';
+import { UserProvider } from './src/lib/userContext';
 
 
 const playfairDisplay = Playfair_Display({
@@ -28,7 +29,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <link rel="icon" href="/logo.png" /> 
       </head>
       <body className={`${playfairDisplay.variable} ${lato.variable}`}>
-        {children}
+        <UserProvider>
+          {children}
+        </UserProvider>
       </body>
     </html>
   );
