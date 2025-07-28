@@ -113,10 +113,7 @@ const HotelListing: React.FC<HotelListingProps> = ({ searchLocation }) => {
     updateFilteredHotels();
   }, [searchLocation, allHotels]);
 
-  if (typeof window !== 'undefined') {
-    console.log('Search location:', searchLocation);
-    console.log('Filtered hotels:', filteredHotels.length);
-  }
+
 
   const filteredPopularHotels = filteredHotels.filter(hotel => hotel.rating > 4.5);
   const filteredOtherHotels = filteredHotels.filter(hotel => hotel.rating <= 4.5);

@@ -17,9 +17,7 @@ const Profile = () => {
     const fetchFavorites = async () => {
       if (user) {
         try {
-          console.log('Fetching favorites for user:', user.uid);
           const favorites = await getUserFavorites(user.uid);
-          console.log('Fetched favorites:', favorites);
           setFavoriteHotels(favorites);
         } catch (error) {
           console.error('Error fetching favorites:', error);
@@ -53,15 +51,7 @@ const Profile = () => {
     );
   }
 
-  // Debug logging
-  if (typeof window !== 'undefined') {
-    console.log('Profile Debug:', {
-      user: user?.uid,
-      userData: userData,
-      loading,
-      username: userData?.username
-    });
-  }
+
 
   if (!user) {
     return (
@@ -110,13 +100,6 @@ const Profile = () => {
               {userData?.username || user.displayName || 'User'}
             </h1>
             <p className="text-gray-600 mb-6">{email}</p>
-            
-            {/* Debug info - remove this later */}
-            {process.env.NODE_ENV === 'development' && (
-              <div className="text-xs text-gray-400 mt-2">
-                Debug: userData?.username = &quot;{userData?.username || 'undefined'}&quot;
-              </div>
-            )}
           </div>
         </div>
 

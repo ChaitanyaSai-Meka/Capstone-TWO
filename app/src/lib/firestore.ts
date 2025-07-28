@@ -29,7 +29,7 @@ export const createUserInFirestore = async (
     // Store user data in Firestore with Firebase UID as document ID
     await setDoc(doc(db, 'users', firebaseUid), userData);
     
-    console.log('User created in Firestore:', { email, username });
+
   } catch (error) {
     console.error('Error creating user in Firestore:', error);
     throw error;
@@ -109,7 +109,7 @@ export const addToFavorites = async (firebaseUid: string, hotel: FavoriteHotel):
       ...hotel,
       addedAt: new Date()
     });
-    console.log('Hotel added to favorites:', hotel.name);
+
   } catch (error) {
     console.error('Error adding to favorites:', error);
     throw error;
@@ -122,7 +122,7 @@ export const removeFromFavorites = async (firebaseUid: string, hotelId: string):
       deleted: true,
       deletedAt: new Date()
     });
-    console.log('Hotel removed from favorites:', hotelId);
+
   } catch (error) {
     console.error('Error removing from favorites:', error);
     throw error;
@@ -143,7 +143,6 @@ export const getUserFavorites = async (firebaseUid: string): Promise<FavoriteHot
       }
     });
     
-    console.log('Fetched favorites:', favorites.length);
     return favorites;
   } catch (error) {
     console.error('Error getting user favorites:', error);
