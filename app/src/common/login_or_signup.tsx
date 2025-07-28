@@ -34,32 +34,27 @@ const Login_or_Signup: React.FC<LoginOrSignupProps> = ({ onSuccess }) => {
     
     try {
       if (isSignup) {
-        // Sign up flow
+
         if (!username.trim()) {
           setError('Username is required for sign up');
           return;
         }
         
-        // Check if username already exists
         const usernameExists = await checkUsernameExists(username);
         if (usernameExists) {
           setError('Username already exists. Please choose a different one.');
           return;
         }
         
-        // Create user in Firebase Auth
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         
-        // Reserve username
         await reserveUsername(username, user.uid);
         
-        // Create user in Firestore
         await createUserInFirestore(email, username, password, user.uid);
         
         if (onSuccess) onSuccess();
       } else {
-        // Sign in flow
         await signInWithEmailAndPassword(auth, email, password);
         if (onSuccess) onSuccess();
       }

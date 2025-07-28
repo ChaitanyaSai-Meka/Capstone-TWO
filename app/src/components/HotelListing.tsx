@@ -46,14 +46,12 @@ const HotelListing: React.FC<HotelListingProps> = ({ searchLocation }) => {
           const hotels = await response.json();
           setAllHotels(hotels);
         } else {
-          // Fallback to local JSON if API fails
           const fallbackResponse = await fetch('/hotels.json');
           const data = await fallbackResponse.json();
           setAllHotels(data);
         }
       } catch (error) {
         console.error('Error fetching hotels:', error);
-        // Fallback to local JSON if API fails
         try {
           const response = await fetch('/hotels.json');
           const data = await response.json();
@@ -68,7 +66,6 @@ const HotelListing: React.FC<HotelListingProps> = ({ searchLocation }) => {
 
   const [searchingHotels, setSearchingHotels] = useState(false);
 
-  // Function to search hotels by location using our API route
   const searchHotelsByLocation = async (location: string) => {
     if (!location.trim()) return allHotels;
     

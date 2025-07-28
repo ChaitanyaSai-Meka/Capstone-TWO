@@ -30,7 +30,6 @@ const HotelCard: React.FC<HotelCardProps> = ({
   const [isFavorited, setIsFavorited] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Check if hotel is favorited on component mount
   useEffect(() => {
     const checkFavoriteStatus = async () => {
       if (user && hotelId) {

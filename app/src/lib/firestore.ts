@@ -6,7 +6,7 @@ const db = getFirestore(app);
 export interface UserData {
   email: string;
   username: string;
-  password: string; // Note: In production, you should hash passwords
+  password: string; 
   createdAt: Date;
   updatedAt: Date;
 }
@@ -69,8 +69,6 @@ export const updateUserInFirestore = async (
 
 export const checkUsernameExists = async (username: string): Promise<boolean> => {
   try {
-    // Note: This is a simple check. In production, you might want to create a separate collection
-    // for usernames or use a different approach for better performance
     const usersRef = doc(db, 'usernames', username);
     const userDoc = await getDoc(usersRef);
     return userDoc.exists();
@@ -92,7 +90,7 @@ export const reserveUsername = async (username: string, firebaseUid: string): Pr
   }
 };
 
-// Favorites functionality
+
 export interface FavoriteHotel {
   hotelId: string;
   name: string;
@@ -137,7 +135,6 @@ export const getUserFavorites = async (firebaseUid: string): Promise<FavoriteHot
     const favorites: FavoriteHotel[] = [];
     querySnapshot.forEach((doc) => {
       const data = doc.data();
-      // Only include favorites that are not marked as deleted
       if (!data.deleted) {
         favorites.push(data as FavoriteHotel);
       }
