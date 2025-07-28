@@ -1,11 +1,9 @@
-import { getFirestore, doc, setDoc, getDoc, updateDoc, collection, query, where, getDocs } from 'firebase/firestore';
+import { getFirestore, doc, setDoc, getDoc, updateDoc, collection, getDocs } from 'firebase/firestore';
 import app from './firebase';
-import { v4 as uuidv4 } from 'uuid';
 
 const db = getFirestore(app);
 
 export interface UserData {
-  uuid: string;
   email: string;
   username: string;
   password: string; // Note: In production, you should hash passwords
@@ -20,9 +18,7 @@ export const createUserInFirestore = async (
   firebaseUid: string
 ): Promise<void> => {
   try {
-    const uuid = uuidv4();
     const userData: UserData = {
-      uuid,
       email,
       username,
       password, // In production, hash this password
@@ -33,7 +29,7 @@ export const createUserInFirestore = async (
     // Store user data in Firestore with Firebase UID as document ID
     await setDoc(doc(db, 'users', firebaseUid), userData);
     
-    console.log('User created in Firestore:', { uuid, email, username });
+    console.log('User created in Firestore:', { email, username });
   } catch (error) {
     console.error('Error creating user in Firestore:', error);
     throw error;
@@ -136,14 +132,18 @@ export const removeFromFavorites = async (firebaseUid: string, hotelId: string):
 export const getUserFavorites = async (firebaseUid: string): Promise<FavoriteHotel[]> => {
   try {
     const favoritesRef = collection(db, 'users', firebaseUid, 'favorites');
-    const q = query(favoritesRef, where('deleted', '!=', true));
-    const querySnapshot = await getDocs(q);
+    const querySnapshot = await getDocs(favoritesRef);
     
     const favorites: FavoriteHotel[] = [];
     querySnapshot.forEach((doc) => {
-      favorites.push(doc.data() as FavoriteHotel);
+      const data = doc.data();
+      // Only include favorites that are not marked as deleted
+      if (!data.deleted) {
+        favorites.push(data as FavoriteHotel);
+      }
     });
     
+    console.log('Fetched favorites:', favorites.length);
     return favorites;
   } catch (error) {
     console.error('Error getting user favorites:', error);

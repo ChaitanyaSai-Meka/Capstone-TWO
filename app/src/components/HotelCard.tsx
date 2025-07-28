@@ -102,8 +102,8 @@ const HotelCard: React.FC<HotelCardProps> = ({
             disabled={isLoading}
             className={`absolute top-3 right-3 p-2 rounded-full transition-all duration-200 ${
               isFavorited 
-                ? 'bg-red-500 text-white shadow-lg' 
-                : 'bg-white/90 backdrop-blur-sm text-gray-600 hover:bg-red-50'
+                ? 'bg-Paynes-Grey text-white shadow-lg' 
+                : 'bg-white/90 backdrop-blur-sm text-gray-600 hover:bg-Paynes-Grey/10'
             } ${isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'}`}
           >
             <Heart 
